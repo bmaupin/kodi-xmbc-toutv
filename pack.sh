@@ -3,7 +3,6 @@
 cd src
 pluginname=`ls`
 pluginversion=`grep '<addon' $pluginname/addon.xml | grep -Po '(?<=version=")\d+\.\d+\.\d+'`
-pluginfilename=$pluginname-$pluginversion.zip
-rm -f ../$pluginfilename
-zip -r ../$pluginfilename .
+rm -f ../$pluginname-*.zip
+zip -r ../$pluginname-$pluginversion.zip .
 cd ..
