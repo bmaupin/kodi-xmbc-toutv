@@ -4,6 +4,7 @@
 #ptvsd.wait_for_attach
 
 #Modules general
+import locale
 import os
 import re
 import sys
@@ -264,6 +265,8 @@ class Main( viewtype ):
     global LOGIN
     
     def __init__( self ):
+        locale.setlocale(locale.LC_ALL, '')
+        
         viewtype.__init__( self )
         
         self.args = Info()
@@ -779,6 +782,12 @@ class Main( viewtype ):
             print_exc()
 
         if listitems:
+            # Unicode alphabetical sort
+            def listitem_sort_func(listitem):
+                return locale.strxfrm(listitem[1].getLabel())
+            # Leave the first item (the folder listing) and sort the rest
+            listitems = listitems[:1] + sorted(listitems[1:], key=listitem_sort_func)
+            
             OK = self._add_directory_items( listitems )
         # fake content movies to show container.foldername
         
