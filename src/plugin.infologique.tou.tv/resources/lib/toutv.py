@@ -517,6 +517,9 @@ class Main( viewtype ):
             #items.append(( ( uri, 'carrousel'   ), ( 'Carrousel TouTV',        '', 'DefaultAddonVisualization.png'    ) ))
             for section in sections:
                 print section
+                # Only show Extra content when logged in
+                if not LOGIN[0] and section['Name'].lower() == 'extra':
+                    continue
                 items.append((( uri, section['Name'] ), ( section['Title'],       section['Title'], 'DefaultAddonScreensaver.png'      )))
             
             #items = [
@@ -609,6 +612,10 @@ class Main( viewtype ):
 
     def _add_api_favoris( self, listitems, item ) :
         if (item[ "Title" ] is not None) and (item["Template"] != 'letter') and (item["Template"] != 'espace-partenaire') and (item['BookmarkKey']):
+            # Only show Extra content when logged in
+            if not LOGIN[0] and not item["IsFree"]:
+                return
+            
             color = ""
             if not item["IsFree"]:
                 Title = "[COLOR gold][Extra][/COLOR] "
