@@ -1,3 +1,7 @@
+2.0.2
+- Montrer émissions Extra seulement si connecté
+- Trier les listes des émissions
+
 2.0.1
 - Possibilité de supprimer des émissions en extra
 - Réparrer un bug qui empêchait de lire les "unique-content"
